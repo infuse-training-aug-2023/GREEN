@@ -40,6 +40,14 @@ class SeleniumWrapper
       raise "element not found"
       return -1
     end
+    begin
+      element = @driver.find_element(selector, value)
+      element.click
+      return 1
+    rescue => exception
+      raise "element not found"
+      return -1
+    end
   end
 
   def select_options(selector, value, how, what)
