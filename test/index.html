@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Login Form</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<h2>Login Form</h2>
+			<form id="loginForm">
+				<label for="username">Username:</label>
+				<input type="text" id="username" name="username" /><br /><br />
+
+				<label for="password">Password:</label>
+				<input type="password" id="password" name="password" /><br /><br />
+
+				<label for="role">Role:</label>
+				<select id="role" name="role">
+					<option value="user">User</option>
+					<option value="admin">Admin</option></select
+				><br /><br />
+
+				<button type="button" onclick="displayDetails()">Submit</button>
+			</form>
+			<div id="details">
+				<h3>User Details:</h3>
+				<p><strong>Username:</strong> <span id="displayUsername"></span></p>
+				<p><strong>Password:</strong> <span id="displayPassword"></span></p>
+				<p><strong>Role:</strong> <span id="displayRole"></span></p>
+			</div>
+		</div>
+
+		<script src="script.js"></script>
+	</body>
+</html>
