@@ -40,14 +40,6 @@ class SeleniumWrapper
       raise "element not found"
       return -1
     end
-    begin
-      element = @driver.find_element(selector, value)
-      element.click
-      return 1
-    rescue => exception
-      raise "element not found"
-      return -1
-    end
   end
 
   def select_options(selector, value, how, what)
@@ -65,6 +57,16 @@ class SeleniumWrapper
     begin
       element = @driver.find_element(selector, value)
       return element
+    rescue => exception
+      raise "element not found"
+      return nil
+    end
+  end
+
+  def get_text(selector, value)
+    begin
+      element = @driver.find_element(selector, value)
+      return element.text
     rescue => exception
       raise "element not found"
       return nil
