@@ -31,6 +31,7 @@ class MouseEvents < Driver
       dropdown = @driver.find_element(selector, selector_value)
       select_list = Selenium::WebDriver::Support::Select.new(dropdown)
       select_list.options.each do |option|
+        puts option.attribute("value")
         if option.attribute("value") == attribute_value.to_s
           option.click
           break
@@ -40,5 +41,10 @@ class MouseEvents < Driver
     rescue => exception
       raise "Element not found: #{exception.message}"
     end
+  end
+
+  def scroll_to(selector, selector_value)
+    element = @driver.find_element(selector, selector_value)
+    @driver.action.scroll_to(element).perform
   end
 end
