@@ -6,14 +6,13 @@ class KeyboardEvents
     @wait = wait
   end
 
-  def send_keys(selector, value, key_strocks)
+  def send_keys(element_selector, element_selector_value, input_text)
     begin
-      element = @wait.until { @driver.find_element(selector, value) }
-      element.send_keys(key_strocks)
+      element = @wait.until { @driver.find_element(element_selector, element_selector_value) }
+      element.send_keys(input_text)
       return 1
     rescue => exception
-      raise "element not found"
-      return -1
+      raise "Element not found: #{exception.message}"
     end
   end
 end

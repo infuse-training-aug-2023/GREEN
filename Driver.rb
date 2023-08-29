@@ -12,6 +12,14 @@ class Driver
     @wait = Selenium::WebDriver::Wait.new(:timeout => 30)
   end
 
+  def get_driver
+    return @driver
+  end
+
+  def get_wait
+    return @wait
+  end
+
   def set_wait(time_sec)
     if (time_sec.is_a? Integer or time_sec.is_a? Float)
       @wait = Selenium::WebDriver::Wait.new(:timeout => time_sec)
@@ -27,13 +35,5 @@ class Driver
 
   def quit
     @driver.quit
-  end
-
-  def get_driver
-    return @driver
-  end
-
-  def get_wait()
-    return @wait
   end
 end

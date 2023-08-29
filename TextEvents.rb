@@ -1,29 +1,26 @@
-require_relative 'Driver'
+require_relative "Driver"
 
 class TextEvents
-    def initialize(driver, wait)
-        @driver = driver
-        @wait = wait
-    end
+  def initialize(driver, wait)
+    @driver = driver
+    @wait = wait
+  end
 
-    def get_element(selector, value)
-        begin
-          element = @driver.find_element(selector, value)
-          return element
-        rescue => exception
-          raise "element not found"
-          return nil
-        end
+  def get_element(element_selector, element_selector_value)
+    begin
+      element = @driver.find_element(element_selector, element_selector_value)
+      return element
+    rescue => exception
+      raise "Element not found: #{exception.message}"
     end
+  end
 
-    def get_text(selector, value)
-        begin
-          element = @wait.until { @driver.find_element(selector, value) }
-          return element.text
-        rescue => exception
-          raise "element not found"
-          return nil
-        end
-      end
-    
+  def get_text(element_selector, element_selector_value)
+    begin
+      element = @wait.until { @driver.find_element(element_selector, element_selector_value) }
+      return element.text
+    rescue => exception
+      raise "Element not found: #{exception.message}"
+    end
+  end
 end
