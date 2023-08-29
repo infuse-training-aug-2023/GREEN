@@ -8,7 +8,7 @@ class MouseEvents < Driver
 
   def click(selector, value)
     begin
-      element = @driver.find_element(selector, value)
+      element = @wait.until { @driver.find_element(selector, value) }
       element.click
       return 1
     rescue => exception
@@ -19,7 +19,7 @@ class MouseEvents < Driver
 
   def select_options(selector, value, how, what)
     begin
-      element = Selenium::WebDriver::Support::Select.new(@driver.find_element(selector, value))
+      element = Selenium::WebDriver::Support::Select.new(wait.until { @driver.find_element(selector, value) })
       element.select_by(how, what)
       return 1
     rescue => exception
