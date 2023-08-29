@@ -22,7 +22,7 @@ class SeleniumWrapper
 
   def click(selector, value)
     begin
-      element = @driver.find_element(selector, value)
+      element = @wait.until { @driver.find_element(selector, value) }
       element.click
       return 1
     rescue => exception
@@ -33,8 +33,8 @@ class SeleniumWrapper
 
   def send_keys(selector, value, key_strocks)
     begin
-      element = @driver.find_element(selector, value)
-      element.send_keys key_strocks
+      element = @wait.until { @driver.find_element(selector, value) }
+      element.send_keys(key_strocks)
       return 1
     rescue => exception
       raise "element not found"
@@ -55,7 +55,7 @@ class SeleniumWrapper
 
   def get_element(selector, value)
     begin
-      element = @driver.find_element(selector, value)
+      element = @wait.until { @driver.find_element(selector, value) }
       return element
     rescue => exception
       raise "element not found"
@@ -65,7 +65,7 @@ class SeleniumWrapper
 
   def get_text(selector, value)
     begin
-      element = @driver.find_element(selector, value)
+      element = @wait.until { @driver.find_element(selector, value) }
       return element.text
     rescue => exception
       raise "element not found"
