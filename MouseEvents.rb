@@ -28,7 +28,7 @@ class MouseEvents < Driver
 
   def select_option_from_dropdown(selector, selector_value, attribute_value)
     begin
-      dropdown = @driver.find_element(:id, "phone-code-select")
+      dropdown = @driver.find_element(selector, selector_value)
       select_list = Selenium::WebDriver::Support::Select.new(dropdown)
       select_list.options.each do |option|
         if option.attribute("value") == attribute_value.to_s
