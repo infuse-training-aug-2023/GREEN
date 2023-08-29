@@ -23,7 +23,7 @@ class Common_flow
   end
 end
 
-c = Common_flow.new
-c.login
-sleep 50
+# c = Common_flow.new
+# c.login
+# sleep 50
 # c.quit
