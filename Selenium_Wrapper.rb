@@ -44,16 +44,6 @@ class SeleniumWrapper
     @text_events.get_text(selector, value)
   end
 
-  def get_text(selector, value)
-    begin
-      element = @wait.until { @driver.find_element(selector, value) }
-      return element.text
-    rescue => exception
-      raise "element not found"
-      return nil
-    end
-  end
-
   def quit
     @driver.quit
   end
