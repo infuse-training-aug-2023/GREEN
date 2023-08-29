@@ -42,6 +42,10 @@ class SeleniumWrapper
     @mouse_events.select_option_from_dropdown(selector, value, attribute_value)
   end
 
+  def scroll_to(selector, value)
+    @mouse_events.scroll_to(selector, value)
+  end
+
   # Keyboard Events
   def send_keys(selector, value, key_strocks)
     @keyboard_events.send_keys(selector, value, key_strocks)
