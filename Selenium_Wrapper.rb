@@ -1,74 +1,45 @@
 require "selenium-webdriver"
+require_relative "Driver"
+require_relative "KeyboardEvents"
+require_relative "TextEvents"
+require_relative "MouseEvents"
 
 Selenium::WebDriver::Chrome::Service.driver_path = "./driver/chromedriver.exe"
 
 class SeleniumWrapper
   def initialize
-    @driver = Selenium::WebDriver.for :chrome
-    @wait = Selenium::WebDriver::Wait.new(:timeout => 10)
-  end
-
-  def set_wait(time_sec)
-    if (time_sec.is_a? Integer or time_sec.is_a? Float)
-      @wait = Selenium::WebDriver::Wait.new(:timeout => time_sec)
-    else
-      raise "Invalid timeout value"
-    end
+    @driver = Driver.new
+    @keyboard_events = KeyboardEvents.new(@driver.get_driver, @driver.get_wait)
+    @text_events = TextEvents.new(@driver.get_driver, @driver.get_wait)
+    @mouse_events = MouseEvents.new(@driver.get_driver, @driver.get_wait)
   end
 
   def open_website(site_url)
-    @driver.get site_url
+    @driver.open_website site_url
+  end
+
+  def set_wait(time_sec)
+    @driver.set_wait(time_sec)
   end
 
   def click(selector, value)
-    begin
-      element = @driver.find_element(selector, value)
-      element.click
-      return 1
-    rescue => exception
-      raise "element not found"
-      return -1
-    end
-  end
-
-  def send_keys(selector, value, key_strocks)
-    begin
-      element = @driver.find_element(selector, value)
-      element.send_keys key_strocks
-      return 1
-    rescue => exception
-      raise "element not found"
-      return -1
-    end
-    begin
-      element = @driver.find_element(selector, value)
-      element.click
-      return 1
-    rescue => exception
-      raise "element not found"
-      return -1
-    end
+    @mouse_events.click(selector, value)
   end
 
   def select_options(selector, value, how, what)
-    begin
-      element = Selenium::WebDriver::Support::Select.new(@driver.find_element(selector, value))
-      element.select_by(how, what)
-      return 1
-    rescue => exception
-      raise "element not found"
-      return 1
-    end
+    @mouse_events.select_options(selector, value, how, what)
+  end
+
+  def send_keys(selector, value, key_strocks)
+    @keyboard_events.send_keys(selector, value, key_strocks)
   end
 
   def get_element(selector, value)
-    begin
-      element = @driver.find_element(selector, value)
-      return element
-    rescue => exception
-      raise "element not found"
-      return nil
-    end
+    @text_events.get_element(selector, value)
+  end
+
+  def get_text(selector, value)
+    @text_events.get_text(selector, value)
   end
 
   def quit
