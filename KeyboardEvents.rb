@@ -1,8 +1,9 @@
 require_relative "Driver"
 
-class KeyboardEvents < Driver
-  def initialize
-    super
+class KeyboardEvents
+  def initialize(driver, wait)
+    @driver = driver
+    @wait = wait
   end
 
   def send_keys(selector, value, key_strocks)
@@ -16,3 +17,10 @@ class KeyboardEvents < Driver
     end
   end
 end
+
+# dr = Driver.new
+# key = KeyboardEvents.new(dr.get_driver, dr.get_wait)
+# dr.open_website "http://google.com"
+# key.send_keys(:id, "APjFqb", "asfd")
+# sleep 5
+# dr.quit
