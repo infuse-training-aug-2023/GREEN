@@ -18,14 +18,7 @@ class Edit_Profile < Common_flow
   end
 
   def edit_profile_contact_number
-    dropdown = @driver.get_element(:id, "phone-code-select")
-    select_list = Selenium::WebDriver::Support::Select.new(dropdown)
-    select_list.options.each do |option|
-      if option.attribute("value") == "+91"
-        option.click
-        break
-      end
-    end
+    @driver.select_option_from_dropdown(:id, "phone-code-select", "+91")
     @driver.send_keys(:id, "contactNumber", "1234567890")
   end
 
@@ -43,16 +36,7 @@ class Edit_Profile < Common_flow
   def edit_profile_height
     @driver.get_element(:id, "height").clear
     @driver.send_keys(:id, "height", 5.8)
-
-    dropdown = @driver.get_element(:class, "height-unit-select")
-    # @driver.click(:class, "height-unit-select")
-    select_option = Selenium::WebDriver::Support::Select.new(dropdown)
-    select_option.options.each do |option|
-      if option.attribute("value") == "feet"
-        option.click
-        break
-      end
-    end
+    @driver.select_option_from_dropdown(:class, "height-unit-select", "feet")
   end
 
   def edit_profile_current_occupation
@@ -71,5 +55,5 @@ e.edit_profile_contact_number
 e.edit_profile_height
 e.edit_profile_current_occupation
 e.complete_profile
-sleep 10
+sleep 5
 e.quit
