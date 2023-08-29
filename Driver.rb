@@ -20,6 +20,7 @@ class Driver
   end
 
   def open_website(site_url)
+    @driver.manage.window.maximize
     @driver.get site_url
   end
 
