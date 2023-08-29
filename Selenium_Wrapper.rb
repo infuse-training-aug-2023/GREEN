@@ -1,8 +1,8 @@
 require "selenium-webdriver"
-require_relative "Driver"
-require_relative "KeyboardEvents"
-require_relative "TextEvents"
-require_relative "MouseEvents"
+require_relative "events/Driver"
+require_relative "events/KeyboardEvents"
+require_relative "events/MouseEvents"
+require_relative "events/TextEvents"
 
 Selenium::WebDriver::Chrome::Service.driver_path = "./driver/chromedriver.exe"
 
