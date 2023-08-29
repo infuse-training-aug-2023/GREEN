@@ -1,6 +1,10 @@
+require "selenium-webdriver"
+
+Selenium::WebDriver::Chrome::Service.driver_path = "./driver/chromedriver.exe"
+
 class Driver
   attr_accessor :driver
-  attr_accessor :@wait
+  attr_accessor :wait
 
   def initialize
     @driver = Selenium::WebDriver.for :chrome
@@ -21,5 +25,13 @@ class Driver
 
   def quit
     @driver.quit
+  end
+
+  def get_driver
+    return @driver
+  end
+
+  def get_wait()
+    return @wait
   end
 end
