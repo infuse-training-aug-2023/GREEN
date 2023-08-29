@@ -1,6 +1,8 @@
 require_relative "Selenium_Wrapper"
 
 class Common_flow
+  attr_accessor :driver
+
   def initialize
     @driver = SeleniumWrapper.new
   end
