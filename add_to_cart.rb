@@ -37,13 +37,13 @@ class Add_TO_cart < Common_flow
     end
 
     # sleep 10
-    begin
-      @driver.click(:xpath, "/html/body/div[2]/div/div[2]/div[1]/div/div[2]/div[3]/div/button[3]")
-      @driver.driver.driver.save_screenshot("./error.png")
-    rescue => execption
-      puts "error"
-      @driver.driver.driver.save_screenshot("./error.png")
-    end
+    # begin
+    @driver.click(:xpath, "/html/body/div[2]/div/div[2]/div[1]/div/div[2]/div[3]/div/button[3]")
+    #   @driver.driver.driver.save_screenshot("./error.png")
+    # rescue => execption
+    #   puts "error"
+    #   @driver.driver.driver.save_screenshot("./error.png")
+    # end
     puts "Added to Cart"
 
     # sleep 5
@@ -73,13 +73,13 @@ class Add_TO_cart < Common_flow
   end
 end
 
-puts "Ecectuting"
-add = Add_TO_cart.new
-add.login
-# sleep 5
-# sleep 5
+# puts "Ecectuting"
+# add = Add_TO_cart.new
+# add.login
+# # sleep 5
+# # sleep 5
 
-add.get_shopping_items
+# add.get_shopping_items
 
-sleep 5
-add.quit
+# sleep 5
+# add.quit

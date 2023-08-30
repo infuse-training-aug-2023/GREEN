@@ -37,7 +37,7 @@ CMD ["ruby", "./Unit_Test.rb"]
 
 
 From build as prod
-CMD [ "ruby" ,"./add_to_cart.rb" ]
+CMD [ "ruby" ,"./Flow_test.rb" ]
 # Run the Ruby script
 # CMD [ "google-chrome","--version" ]
 # CMD ["ruby", "./Test.rb"]

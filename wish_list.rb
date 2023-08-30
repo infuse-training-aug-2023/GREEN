@@ -71,28 +71,28 @@ class WishList < Common_flow
     # @driver.click(:xpath,'/html/body/div[1]/div/div[2]/div[4]/span/div/section/div[2]/div[2]/div[2]/div/button[2]')
     if @driver.get_element(:xpath, '//span[contains(text(),"Remove")]').displayed?
       @driver.click(:xpath, '//span[contains(text(),"Remove")]')
-      print("Item deleted successfully")
+      puts("Item deleted successfully")
     end
   end
 end
 
-wish_list = WishList.new
-# wish_list.set_wait(10)
-wish_list.login
-print "logged in\n"
+# wish_list = WishList.new
+# # wish_list.set_wait(10)
+# wish_list.login
+# print "logged in\n"
+# # sleep 10
+# wish_list.click_item
+# # sleep 10
+# wish_list.select_size
+# wish_list.add_to_wish_list
 # sleep 10
-wish_list.click_item
+# wish_list.open_wish_list
+# # wish_list.edit_wish_list
+# # wish_list.change_size
+# # wish_list.update
+# # sleep 5
+# wish_list.delete
+# # sleep 5
+# wish_list.delete_confirm
 # sleep 10
-wish_list.select_size
-wish_list.add_to_wish_list
-sleep 10
-wish_list.open_wish_list
-# wish_list.edit_wish_list
-# wish_list.change_size
-# wish_list.update
-# sleep 5
-wish_list.delete
-# sleep 5
-wish_list.delete_confirm
-sleep 10
-wish_list.quit
+# wish_list.quit

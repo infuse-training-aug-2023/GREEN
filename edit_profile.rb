@@ -92,8 +92,8 @@ class Edit_Profile < Common_flow
   end
 end
 
-e = Edit_Profile.new
-e.login
-e.run_all_edit_profile
-e.display_profile_after_changes
-e.quit
+# e = Edit_Profile.new
+# e.login
+# e.run_all_edit_profile
+# e.display_profile_after_changes
+# e.quit
