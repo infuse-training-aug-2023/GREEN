@@ -1,6 +1,6 @@
 require "selenium-webdriver"
 
-Selenium::WebDriver::Chrome::Service.driver_path = "./driver/chromedriver"
+# Selenium::WebDriver::Chrome::Service.driver_path = "./driver/chromedriver"
 
 class Driver
   attr_accessor :driver
@@ -13,9 +13,10 @@ class Driver
     @options.add_argument("--headless")
     # @options.add_argument("--disable-dev-shm-usage")
     # @options.add_argument("--no-sandbox")
-    @driver = Selenium::WebDriver.for(:chrome, options: @options)
-    @driver.manage.timeouts.implicit_wait = 5
-    @driver.manage.timeouts.page_load = 5
+    # @driver = Selenium::WebDriver.for(:chrome, options: @options)
+    @driver = Selenium::WebDriver.for(:chrome)
+    @driver.manage.timeouts.implicit_wait = 15
+    @driver.manage.timeouts.page_load = 15
     @wait = Selenium::WebDriver::Wait.new(:timeout => 30)
   end
 
@@ -35,7 +36,6 @@ class Driver
   def quit
     @driver.quit
   end
-
   def get_driver
     return @driver
   end

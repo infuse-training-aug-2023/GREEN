@@ -6,10 +6,12 @@ class Add_TO_cart < Common_flow
     @driver = get_driver
     @driver.set_wait(20)
     @erros = 0
+    @erros = 0
   end
 
   def get_shopping_items
-    @driver.click(:xpath, "/html/body/div[1]/div/div[2]/div[2]/div[2]/section/div/div/div/div[2]/div/div/ul/li[1]/div/div")
+    puts "clicking on item"
+    @driver.click(:class, "sf-product-card__link")
     # sleep 5
 
     original_window = @driver.driver.driver.window_handle
@@ -21,16 +23,17 @@ class Add_TO_cart < Common_flow
       end
     end
     @driver.click(:class, "sf-button--oos-")
-
-    @driver.click(:xpath, "/html/body/div[1]/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div/div[4]/div[2]/div/div[3]/div/div[1]/button[1]")
+puts "Clicked on size"
+    @driver.click(:class, "a-add-to-cart")
     loop do
-      added = @driver.get_text(:xpath, "/html/body/div[1]/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div/div[4]/div[2]/div/div[3]/div/div[1]/button[1]")
+      added = @driver.get_text(:class, "a-add-to-cart")
       if added == "ADD TO BAG"
         break
       end
     end
+    puts "Added to Cart" 
     @driver.click(:class, "microcart")
-
+    puts "Confirming added to Cart"
     check_added
   end
 
@@ -47,6 +50,7 @@ end
 
 add = Add_TO_cart.new
 add.login
+# sleep 5
 # sleep 5
 add.get_shopping_items
 
