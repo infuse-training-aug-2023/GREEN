@@ -1,8 +1,8 @@
 require "selenium-webdriver"
-require_relative "Driver"
-require_relative "KeyboardEvents"
-require_relative "TextEvents"
-require_relative "MouseEvents"
+require_relative "events/Driver"
+require_relative "events/KeyboardEvents"
+require_relative "events/MouseEvents"
+require_relative "events/TextEvents"
 
 Selenium::WebDriver::Chrome::Service.driver_path = "./driver/chromedriver.exe"
 
@@ -16,6 +16,7 @@ class SeleniumWrapper
     @mouse_events = MouseEvents.new(@driver.get_driver, @driver.get_wait)
   end
 
+  # Driver Events
   def open_website(site_url)
     @driver.open_website site_url
   end
@@ -24,28 +25,35 @@ class SeleniumWrapper
     @driver.set_wait(time_sec)
   end
 
-  def click(selector, value)
-    @mouse_events.click(selector, value)
-  end
-
-  def select_options(selector, value, how, what)
-    @mouse_events.select_options(selector, value, how, what)
-  end
-
-  def send_keys(selector, value, key_strocks)
-    @keyboard_events.send_keys(selector, value, key_strocks)
-  end
-
-  def get_element(selector, value)
-    @text_events.get_element(selector, value)
-  end
-
-  def get_text(selector, value)
-    @text_events.get_text(selector, value)
-  end
-
   def quit
     @driver.quit
+  end
+
+  # Mouse Events
+  def click(element_selector, element_selector_value)
+    @mouse_events.click(element_selector, element_selector_value)
+  end
+
+  def select_options(element_selector, element_selector_value, option_element_selector, option_element_selector_value)
+    @mouse_events.select_options(element_selector, element_selector_value, option_element_selector, option_element_selector_value)
+  end
+
+  def scroll_to(element_selector, element_selector_value)
+    @mouse_events.scroll_to(element_selector, element_selector_value)
+  end
+
+  # Keyboard Events
+  def send_keys(element_selector, element_selector_value, input_text)
+    @keyboard_events.send_keys(element_selector, element_selector_value, input_text)
+  end
+
+  # Text Events
+  def get_element(element_selector, element_selector_value)
+    @text_events.get_element(element_selector, element_selector_value)
+  end
+
+  def get_text(element_selector, element_selector_value)
+    @text_events.get_text(element_selector, element_selector_value)
   end
 end
 

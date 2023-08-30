@@ -8,9 +8,17 @@ class Driver
 
   def initialize
     @driver = Selenium::WebDriver.for :chrome
-    @driver.manage.timeouts.implicit_wait = 20
-    @driver.manage.timeouts.page_load = 20
+    @driver.manage.timeouts.implicit_wait = 5
+    @driver.manage.timeouts.page_load = 5
     @wait = Selenium::WebDriver::Wait.new(:timeout => 30)
+  end
+
+  def get_driver
+    return @driver
+  end
+
+  def get_wait
+    return @wait
   end
 
   def set_wait(time_sec)
@@ -28,13 +36,5 @@ class Driver
 
   def quit
     @driver.quit
-  end
-
-  def get_driver
-    return @driver
-  end
-
-  def get_wait()
-    return @wait
   end
 end
