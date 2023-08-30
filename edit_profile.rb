@@ -60,16 +60,16 @@ class Edit_Profile < Common_flow
   end
 end
 
-# e = Edit_Profile.new
-# e.login
-# e.goto_edit_profile
-# e.edit_profile_contact_number
-# e.edit_profile_size_wear
-# e.edit_profile_height
-# e.edit_profile_shoe_size
-# e.edit_profile_have_children
-# e.edit_profile_current_occupation
-# e.edit_profile_checkbox
-# e.complete_profile
-# sleep 5
-# e.quit
+e = Edit_Profile.new
+e.login
+e.goto_edit_profile
+e.edit_profile_contact_number
+e.edit_profile_size_wear
+e.edit_profile_height
+e.edit_profile_shoe_size
+e.edit_profile_have_children
+e.edit_profile_current_occupation
+e.edit_profile_checkbox
+e.complete_profile
+sleep 5
+e.quit
