@@ -1,11 +1,9 @@
 require "test/unit"
 
-require_relative "Selenium_Wrapper"
+require_relative "selenium_wrapper"
 
 class TestAverage < Test::Unit::TestCase
-  # @@url = "file:///home/zeus/Documents/infuse/GREEN/test/index.html"
   @@url = "file:///app/test/index.html" #for docker
-
   # @@url = "http://127.0.0.1:5500/test/index.html" # for windows
 
   def test_selenium_wrapper_object
@@ -19,15 +17,6 @@ class TestAverage < Test::Unit::TestCase
     assert_equal(nil, test_creation_selenium.open_website(@@url))
     test_creation_selenium.quit
   end
-
-  # def test_open_website_failed
-  #     test_creation_selenium = SeleniumWrapper.new
-  #     # test_open_website = test_creation_selenium.open_website('http://127.0.0.1:5500/test/index.html')
-  #     # assert_raise(fatal)do
-  #     # test_creation_selenium.open_website('http://12.0.0.1:5500/GREEN/test/index.html')
-  #     # end
-  #     assert_equal('ERR_CONNECTION_TIMED_OUT',test_creation_selenium.open_website('http://12.0.0.1:5500/GREEN/test/index.html'))
-  # end
 
   def test_set_wait
     test_creation_selenium = SeleniumWrapper.new

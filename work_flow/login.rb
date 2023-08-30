@@ -1,6 +1,6 @@
-require_relative "Selenium_Wrapper"
+require_relative "../selenium_wrapper"
 
-class Common_flow
+class LoginFlow
   attr_accessor :driver
 
   def initialize
@@ -12,7 +12,7 @@ class Common_flow
   end
 
   def login
-    puts ""
+    puts "\nLogging in to Love Bonito"
     @driver.open_website "https://www.lovebonito.com/intl"
     @driver.click(:class, "my-account")
     @driver.send_keys(:id, "email", "gajav64509@trazeco.com")
@@ -34,7 +34,7 @@ class Common_flow
   end
 end
 
-# c = Common_flow.new
+# c = LoginFlow.new
 # c.login
 # sleep 50
 # c.quit
