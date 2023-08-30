@@ -9,12 +9,12 @@ class Driver
   def initialize
     @options = Selenium::WebDriver::Chrome::Options.new
     @options.add_argument("--no-sandbox")
-    @options.add_argument("--disable-gpu")
+    # @options.add_argument("--disable-gpu")
     @options.add_argument("--headless")
-    # @options.add_argument("--disable-dev-shm-usage")
+    @options.add_argument("--disable-dev-shm-usage")
     # @options.add_argument("--no-sandbox")
-    # @driver = Selenium::WebDriver.for(:chrome, options: @options)
-    @driver = Selenium::WebDriver.for(:chrome)
+    @driver = Selenium::WebDriver.for(:chrome, options: @options)
+    # @driver = Selenium::WebDriver.for(:chrome)
     @driver.manage.timeouts.implicit_wait = 15
     @driver.manage.timeouts.page_load = 15
     @wait = Selenium::WebDriver::Wait.new(:timeout => 30)
@@ -29,7 +29,8 @@ class Driver
   end
 
   def open_website(site_url)
-    @driver.manage.window.maximize
+    # print @driver.to_s + "driver\n"
+    @driver.manage.window.resize_to(1292, 821)
     @driver.get site_url
   end
 

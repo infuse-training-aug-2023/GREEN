@@ -4,12 +4,13 @@ require_relative "Selenium_Wrapper"
 
 class TestAverage < Test::Unit::TestCase
   # @@url = "file:///home/zeus/Documents/infuse/GREEN/test/index.html"
-  @@url = "file:///app/testindex.html" #for docker
+  @@url = "file:///app/test/index.html" #for docker
 
   # @@url = "http://127.0.0.1:5500/test/index.html" # for windows
 
   def test_selenium_wrapper_object
     test_creation_selenium_wrapper = SeleniumWrapper.new
+    puts @@url
     assert test_creation_selenium_wrapper.instance_of? SeleniumWrapper
   end
 

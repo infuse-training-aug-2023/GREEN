@@ -9,7 +9,8 @@ class SeleniumWrapper
   attr_accessor :driver
 
   def initialize
-    @driver = Driver.new
+    driver_obj = Driver.new
+    @driver = driver_obj
     @keyboard_events = KeyboardEvents.new(@driver.get_driver, @driver.get_wait)
     @text_events = TextEvents.new(@driver.get_driver, @driver.get_wait)
     @mouse_events = MouseEvents.new(@driver.get_driver, @driver.get_wait)
