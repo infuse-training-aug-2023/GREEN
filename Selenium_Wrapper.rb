@@ -5,6 +5,8 @@ require_relative "events/MouseEvents"
 require_relative "events/TextEvents"
 Selenium::WebDriver::Chrome::Service.driver_path = "./driver/chromedriver"
 
+# Selenium::WebDriver::Chrome::Service.driver_path = "./driver/chromedriver.exe"
+
 class SeleniumWrapper
   attr_accessor :driver
 

@@ -6,7 +6,6 @@ class Add_TO_cart < Common_flow
     @driver = get_driver
     @driver.set_wait(20)
     @erros = 0
-    @erros = 0
   end
 
   def get_shopping_items
