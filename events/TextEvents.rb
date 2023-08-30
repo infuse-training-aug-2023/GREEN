@@ -8,7 +8,7 @@ class TextEvents
 
   def get_element(element_selector, element_selector_value)
     begin
-      element = @driver.find_element(element_selector, element_selector_value)
+      element = @wait.until { @driver.find_element(element_selector, element_selector_value) }
       return element
     rescue => exception
       raise "Element not found: #{exception.message}"

@@ -4,14 +4,15 @@ class Add_TO_cart < Common_flow
   def initialize
     super
     @driver = get_driver
-    @driver.set_wait(20)
+    # @driver.set_wait(20)
     @erros = 0
   end
 
   def get_shopping_items
+    cancel_click
     puts "clicking on item"
     @driver.click(:class, "sf-product-card__link")
-    cancel_click
+
     # sleep 5
 
     original_window = @driver.driver.driver.window_handle
@@ -22,28 +23,40 @@ class Add_TO_cart < Common_flow
         break
       end
     end
-    cancel_click
+
     @driver.click(:class, "sf-button--oos-")
-    cancel_click
+
     puts "Clicked on size"
     @driver.click(:class, "a-add-to-cart")
-    cancel_click
+
     loop do
       added = @driver.get_text(:class, "a-add-to-cart")
       if added == "ADD TO BAG"
         break
       end
     end
-    puts "Added to Cart" 
-    @driver.click(:class, "microcart")
-    cancel_click
+
+    # sleep 10
+    begin
+      @driver.click(:xpath, "/html/body/div[2]/div/div[2]/div[1]/div/div[2]/div[3]/div/button[3]")
+      @driver.driver.driver.save_screenshot("./error.png")
+    rescue => execption
+      puts "error"
+      @driver.driver.driver.save_screenshot("./error.png")
+    end
+    puts "Added to Cart"
+
+    # sleep 5
+
+    # @driver.click(:class, "microcart")
+
     puts "Confirming added to Cart"
     check_added
   end
 
   def check_added
     arr = @driver.get_text(:class, "cart-header").split
-    cancel_click
+
     items = arr[3].chars[1].to_i
     if items > 0
       puts "Added to Cart Succsessfully"
@@ -53,19 +66,20 @@ class Add_TO_cart < Common_flow
   end
 
   def cancel_click
-    cross_btn = @driver.get_element(:id,"wps-ribbon-bottom-fix-close-button")
+    cross_btn = @driver.get_element(:id, "wps-ribbon-bottom-fix-close-button")
     if cross_btn.displayed?
-      @driver.click(:id,"wps-ribbon-bottom-fix-close-button")
+      @driver.click(:id, "wps-ribbon-bottom-fix-close-button")
     end
   end
-  
 end
+
 puts "Ecectuting"
 add = Add_TO_cart.new
 add.login
 # sleep 5
 # sleep 5
+
 add.get_shopping_items
 
-# sleep 5
+sleep 5
 add.quit

@@ -4,7 +4,7 @@ class Edit_Profile < Common_flow
   def initialize
     super
     @driver = get_driver
-    @driver.set_wait(30)
+    # @driver.set_wait(30)
   end
 
   def goto_edit_profile
