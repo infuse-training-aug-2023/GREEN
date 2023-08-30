@@ -1,5 +1,5 @@
 # Use the official Ruby image as the base
-FROM ruby:latest
+FROM ruby:latest as build
 
 # Set the working directory in the container
 WORKDIR /app
@@ -32,7 +32,12 @@ RUN bundle install
 
 
 
+FROM build as test
+CMD ["ruby", "./Unit_Test.rb"]
 
+
+From build as prod
+CMD [ "ruby" ,"./add_to_cart.rb" ]
 # Run the Ruby script
 # CMD [ "google-chrome","--version" ]
 # CMD ["ruby", "./Test.rb"]
