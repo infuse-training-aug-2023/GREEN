@@ -33,11 +33,8 @@ RUN bundle install
 
 
 FROM build as test
-CMD ["ruby", "./Unit_Test.rb"]
+CMD ["ruby", "./unit_test.rb"]
 
 
 From build as prod
-CMD [ "ruby" ,"./Flow_test.rb" ]
-# Run the Ruby script
-# CMD [ "google-chrome","--version" ]
-# CMD ["ruby", "./Test.rb"]
+CMD [ "ruby" ,"./run_work_flow.rb" ]
