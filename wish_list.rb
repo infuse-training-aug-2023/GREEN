@@ -9,13 +9,16 @@ class WishList < Common_flow
     end
     
     def click_item
-        @driver.click(:xpath,'//*[@id="homepage_product_carousel"]/section/div/div/div/div[2]/div/div/ul/li[3]/div/div/a')
-        element = @driver.get_text(:xpath,'/html/body/div[1]/div/div[2]/div[2]/div[2]/section/div/div/div/div[2]/div/div/ul/li[3]/div/div/a/h3')
+        # @driver.click(:xpath,'/html/body/div[1]/div/div[2]/div[3]/div[2]/section/div/div/div/div[2]/div/div/ul/li[2]/div/div/a/h3')
+        @driver.click(:class,'sf-product-card__link')
+
+        element = @driver.get_text(:class,'sf-product-card__link')
         print("Clicked #{element}\n")
     end
 
     def select_size
-        @driver.click(:xpath,'//*[@id="product__select-size-sizes"]/div[2]/button')
+        # @driver.click(:xpath,'//*[@id="product__select-size-sizes"]/div[2]/button')
+        @driver.click(:xpath,'sf-button--oos')
     end
 
     def add_to_wish_list
@@ -56,6 +59,7 @@ wish_list.login
 print "logged in\n"
 # sleep 10
 wish_list.click_item
+# sleep 10
 wish_list.select_size
 wish_list.add_to_wish_list
 sleep 10
