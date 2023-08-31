@@ -8,7 +8,6 @@ class EditProfile < LoginFlow
   end
 
   def goto_edit_profile
-    sleep(5)
     close_popup
     @driver.click(:css, "button.sf-button.sf-button--pure.a-account-icon.my-account")
     @driver.click(:link_text, "Edit Profile")
