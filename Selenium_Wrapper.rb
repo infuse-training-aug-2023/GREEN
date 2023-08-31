@@ -1,11 +1,11 @@
 require "selenium-webdriver"
-require_relative "events/Driver"
-require_relative "events/KeyboardEvents"
-require_relative "events/MouseEvents"
-require_relative "events/TextEvents"
-Selenium::WebDriver::Chrome::Service.driver_path = "./driver/chromedriver"
+require_relative "events/driver"
+require_relative "events/keyboard_events"
+require_relative "events/mouse_events"
+require_relative "events/text_events"
 
-# Selenium::WebDriver::Chrome::Service.driver_path = "./driver/chromedriver.exe"
+Selenium::WebDriver::Chrome::Service.driver_path = "./driver/chromedriver" # For docker
+# Selenium::WebDriver::Chrome::Service.driver_path = "./driver/chromedriver.exe" # For Windows
 
 class SeleniumWrapper
   attr_accessor :driver
@@ -63,10 +63,6 @@ end
 # sl.open_website("https://testpages.herokuapp.com/styled/basic-html-form-test.html")
 # sl.set_wait(10)
 # sl.send_keys(:name, "username", "heelo")
-
 # test = sl.get_element(:name, "username")
-
 # print(test.text)
-
-# sleep 5
 # sl.quit

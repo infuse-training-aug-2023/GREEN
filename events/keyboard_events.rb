@@ -1,4 +1,4 @@
-require_relative "Driver"
+require_relative "driver"
 
 class KeyboardEvents
   def initialize(driver, wait)

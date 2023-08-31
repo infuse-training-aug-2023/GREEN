@@ -1,18 +1,16 @@
-require_relative "Login"
+require_relative "login"
 
-class Add_TO_cart < Common_flow
+class AddToCart < LoginFlow
   def initialize
     super
     @driver = get_driver
-    @driver.set_wait(20)
-    @erros = 0
+    @driver.set_wait(30)
   end
 
   def get_shopping_items
+    close_popup
     puts "clicking on item"
     @driver.click(:class, "sf-product-card__link")
-    cancel_click
-    # sleep 5
 
     original_window = @driver.driver.driver.window_handle
 
@@ -22,28 +20,28 @@ class Add_TO_cart < Common_flow
         break
       end
     end
-    cancel_click
+
     @driver.click(:class, "sf-button--oos-")
-    cancel_click
+
     puts "Clicked on size"
     @driver.click(:class, "a-add-to-cart")
-    cancel_click
+
     loop do
       added = @driver.get_text(:class, "a-add-to-cart")
       if added == "ADD TO BAG"
         break
       end
     end
-    puts "Added to Cart" 
-    @driver.click(:class, "microcart")
-    cancel_click
+
+    @driver.click(:xpath, "/html/body/div[2]/div/div[2]/div[1]/div/div[2]/div[3]/div/button[3]")
+    puts "Added to Cart"
     puts "Confirming added to Cart"
     check_added
   end
 
   def check_added
     arr = @driver.get_text(:class, "cart-header").split
-    cancel_click
+
     items = arr[3].chars[1].to_i
     if items > 0
       puts "Added to Cart Succsessfully"
@@ -52,20 +50,14 @@ class Add_TO_cart < Common_flow
     end
   end
 
-  def cancel_click
-    cross_btn = @driver.get_element(:id,"wps-ribbon-bottom-fix-close-button")
-    if cross_btn.displayed?
-      @driver.click(:id,"wps-ribbon-bottom-fix-close-button")
+  def close_popup
+    if @driver.get_element(:id, "wps-ribbon-bottom-fix-close-button").displayed?
+      @driver.click(:id, "wps-ribbon-bottom-fix-close-button")
     end
   end
-  
 end
-puts "Ecectuting"
-add = Add_TO_cart.new
-add.login
-# sleep 5
-# sleep 5
-add.get_shopping_items
 
-# sleep 5
-add.quit
+# add = AddToCart.new
+# add.login
+# add.get_shopping_items
+# add.quit

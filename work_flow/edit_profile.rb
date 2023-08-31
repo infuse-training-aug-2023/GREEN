@@ -1,6 +1,6 @@
-require_relative "Login"
+require_relative "login"
 
-class Edit_Profile < Common_flow
+class EditProfile < LoginFlow
   def initialize
     super
     @driver = get_driver
@@ -8,21 +8,10 @@ class Edit_Profile < Common_flow
   end
 
   def goto_edit_profile
-    sleep(5)
-    # Pop up
-    if @driver.get_element(:id, "wps-ribbon-bottom-fix-close-button").displayed?
-      @driver.click(:id, "wps-ribbon-bottom-fix-close-button")
-    end
-
+    close_popup
     @driver.click(:css, "button.sf-button.sf-button--pure.a-account-icon.my-account")
-    # @driver.click(:xpath, '//*[@id="viewport"]/div[1]/div/div[2]/div[3]/div/button[2]')
-    # @driver.click(:class, "a-account-icon")
-
     @driver.click(:link_text, "Edit Profile")
-
     @driver.click(:css, "button.sf-button.a-button.primary.block")
-    # @driver.click(:xpath, '//*[@id="my-account"]/div/div[2]/div[3]/div/div/div/div/button')
-    # @driver.click(:xpath, '//*[contains(text(),"Edit Profile")]')
   end
 
   def edit_profile_contact_number
@@ -67,19 +56,14 @@ class Edit_Profile < Common_flow
     @driver.click(:xpath, '//*[@id="my-account"]/div/div[2]/div[3]/div/div/div/div/div/form/button')
   end
 
-  def display_profile_after_changes
-    sleep 5
-    profile_details = @driver.get_element(:id, "profile-details")
-    data_list = profile_details.find_elements(:tag_name, "dl")
-    dt_elements = data_list[0].find_elements(:tag_name, "dt")
-    dd_elements = data_list[0].find_elements(:tag_name, "dd")
-
-    dt_elements.each_with_index do |dt, index|
-      print "#{dt.text} : #{dd_elements[index].text}\n"
+  def close_popup
+    if @driver.get_element(:id, "wps-ribbon-bottom-fix-close-button").displayed?
+      @driver.click(:id, "wps-ribbon-bottom-fix-close-button")
     end
   end
 
-  def run_all_edit_profile
+  def edit_profile_details
+    puts "\nEditing Profile"
     goto_edit_profile
     edit_profile_contact_number
     edit_profile_size_wear
@@ -90,10 +74,21 @@ class Edit_Profile < Common_flow
     edit_profile_checkbox
     complete_profile
   end
+
+  def display_profile_after_changes
+    puts "Displaying Profile Details"
+    profile_details = @driver.get_element(:id, "profile-details")
+    data_list = profile_details.find_elements(:tag_name, "dl")
+    dt_elements = data_list[0].find_elements(:tag_name, "dt")
+    dd_elements = data_list[0].find_elements(:tag_name, "dd")
+    dt_elements.each_with_index do |dt, index|
+      print "#{dt.text} : #{dd_elements[index].text}\n"
+    end
+  end
 end
 
-e = Edit_Profile.new
-e.login
-e.run_all_edit_profile
-e.display_profile_after_changes
-e.quit
+# edit = EditProfile.new
+# edit.login
+# edit.edit_profile_details
+# edit.display_profile_after_changes
+# edit.quit

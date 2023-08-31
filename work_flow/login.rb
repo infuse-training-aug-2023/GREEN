@@ -1,6 +1,6 @@
-require_relative "Selenium_Wrapper"
+require_relative "../selenium_wrapper"
 
-class Common_flow
+class LoginFlow
   attr_accessor :driver
 
   def initialize
@@ -12,6 +12,7 @@ class Common_flow
   end
 
   def login
+    puts "\nLogging in to Love Bonito"
     @driver.open_website "https://www.lovebonito.com/intl"
     @driver.click(:class, "my-account")
     @driver.send_keys(:id, "email", "gajav64509@trazeco.com")
@@ -20,7 +21,7 @@ class Common_flow
     @driver.click(:xpath, '//*[@id="viewport"]/div[1]/div/div[2]/div[3]/div/div[2]/aside/div[2]/div/div/div[2]/form/div/div[3]/button')
     puts "Waiting for Authorization"
     loop do
-      authorization_modal = @driver.get_element(:class,"m-loader")
+      authorization_modal = @driver.get_element(:class, "m-loader")
       if not authorization_modal.displayed?
         break
       end
@@ -33,7 +34,7 @@ class Common_flow
   end
 end
 
-# c = Common_flow.new
+# c = LoginFlow.new
 # c.login
 # sleep 50
 # c.quit
